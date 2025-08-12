@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game Viewer</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+        iframe {
+            margin: 20px auto;
+            display: block;
+            border: 1px solid #ccc;
+        }
+    </style>
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        window.onload = function() {
+            const gameUrl = getQueryParam("game");
+            const iframe = document.getElementById("gameFrame");
+
+            if (gameUrl) {
+                iframe.src = gameUrl;
+            } else {
+                iframe.style.display = "none";
+                document.getElementById("message").style.display = "block";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Game Viewer</h2>
+    <p id="message" style="display:none;">No game selected. Please go back and choose one.</p>
+    <iframe id="gameFrame" width="800" height="600"></iframe>
+</body>
+</html>
